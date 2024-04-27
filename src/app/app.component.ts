@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular_dashboard';
+
+  isLoggedIn: boolean = true;
+  user: any;
+
+  ngOnInit(): void {
+    this.user = { name: 'Gowtham' };
+  }
+
+  logout() {
+
+  }
 }

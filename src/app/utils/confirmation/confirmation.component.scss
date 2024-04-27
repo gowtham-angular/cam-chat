@@ -1,0 +1,43 @@
+/* Styling for the confirmation modal title */
+.container {
+    padding: 20px;
+}
+.mat-dialog-title {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for the confirmation modal content */
+  .mat-dialog-content {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the confirmation modal actions */
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* Styling for the confirmation modal action buttons */
+  .mat-dialog-actions button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Styling for the "Yes" button */
+  .mat-dialog-actions button.mat-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Styling for the "No" button */
+  .mat-dialog-actions button.mat-button {
+    background-color: #ccc;
+    color: #333;
+  }
+  

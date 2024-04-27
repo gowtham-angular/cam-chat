@@ -1,0 +1,22 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .sideNavigation {
+    padding: 20px;
+    width: 200px;
+    height: 100vh;
+    border-right: 1px solid #b4b4b8;
+  }
+
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+   
+
+    .card-container {
+        padding: 20px;
+        height: 100px;
+        width: 300px;
+    }
+}
+
+.material-icons.orange600 { color: #FB8C00; }
+.material-icons.md-48 { font-size: 48px; }

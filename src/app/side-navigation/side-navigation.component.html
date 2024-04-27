@@ -1,0 +1,6 @@
+<mat-nav-list role="navigation"   #options>
+    @for (option of sideNavOptions; track option) {
+    <!-- <mat-list-option>{{option}}</mat-list-option> -->
+    <mat-list-item [routerLink]="option.link" routerLinkActive>{{option.name}}</mat-list-item>
+    }
+</mat-nav-list>

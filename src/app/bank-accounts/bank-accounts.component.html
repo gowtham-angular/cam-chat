@@ -1,0 +1,21 @@
+<div class="container">
+    <mat-card class="card-container" *ngFor="let account of bankAccounts;">
+        <mat-card-header class="card-header">
+            <div> Name: {{account.name}}</div>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+
+                <mat-list-item role="listitem">Account No: {{account.accountNo}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem">Bank Name: {{account.bank}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem">Ifsc: {{account.ifsc}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem">UPI ID: {{account.upiId}}</mat-list-item>
+            </mat-list>
+
+            <button ngxClipboard  (click)="copyData(account)" class="copy_button" mat-raised-button color="primary">Click to Copy</button>
+        </mat-card-content>
+    </mat-card>
+</div>

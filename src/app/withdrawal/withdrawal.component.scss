@@ -1,0 +1,23 @@
+mat-card {
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: flex-start; /* Align child elements to the start of the main axis (top) */
+    align-items: stretch; /* Stretch child elements to match the width of the container */
+    height: 100%; /* Optionally set the height to fill the available space */
+  }
+  
+  mat-card-content {
+    flex: 1; /* Allow the content to grow to fill available space vertically */
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
+  }
+  
+  mat-form-field {
+    margin-bottom: 20px; /* Add spacing between form fields */
+  }
+  
+  mat-card-actions {
+    margin-top: auto;
+    margin-left: auto; /* Push the actions to the bottom of the card */
+  }
+  

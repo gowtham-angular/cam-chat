@@ -1,0 +1,56 @@
+<mat-tab-group>
+    <mat-tab label="Create Product">
+        <div *ngIf="uploading" class="loader-overlay">
+            <mat-spinner diameter="32"></mat-spinner>
+          </div>
+          
+        <form (ngSubmit)="uploadImage()" class="product">
+            <mat-form-field>
+                <input matInput placeholder="Image Name" [(ngModel)]="imageName" name="imageName" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Price" [(ngModel)]="price" name="price" type="number" required>
+            </mat-form-field>
+            <input type="file" (change)="onFileSelected($event)">
+            <button mat-raised-button color="primary" type="submit">Upload Image</button>
+        </form>
+    </mat-tab>
+    <mat-tab label="Product List">
+        <mat-card class="product_lists">
+            <mat-table [dataSource]="dataSource">
+                <!-- Thumbnail Column -->
+                <ng-container matColumnDef="thumbnail">
+                    <mat-header-cell *matHeaderCellDef> Thumbnail </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <img [src]="element.url" alt="Thumbnail" style="width: 100px; height: auto;">
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Image Name Column -->
+                <ng-container matColumnDef="imageName">
+                    <mat-header-cell *matHeaderCellDef> Image Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.imageName }} </mat-cell>
+                </ng-container>
+
+                <!-- Price Column -->
+                <ng-container matColumnDef="price">
+                    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.price }} </mat-cell>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <button mat-icon-button color="warn" (click)="deleteProduct(element.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>
