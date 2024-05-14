@@ -13,8 +13,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatPaginatorModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule
   ],
   exports: [
     MatSlideToggleModule,
@@ -51,7 +53,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatPaginatorModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

@@ -2,15 +2,24 @@
     <mat-tab label="Create Product">
         <div *ngIf="uploading" class="loader-overlay">
             <mat-spinner diameter="32"></mat-spinner>
-          </div>
-          
-        <form (ngSubmit)="uploadImage()" class="product">
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="uploadImage()" class="product">
             <mat-form-field>
-                <input matInput placeholder="Image Name" [(ngModel)]="imageName" name="imageName" required>
+                <mat-label>Levels</mat-label>
+                <mat-select formControlName="level">
+                    @for (item of levels; track item) {
+                    <mat-option [value]="item.value">{{item.viewValue}}</mat-option>
+                    }
+                </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="Price" [(ngModel)]="price" name="price" type="number" required>
+                <input matInput placeholder="Image Name" formControlName="imageName" required>
             </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Price" formControlName="price" type="number" required>
+            </mat-form-field>
+
             <input type="file" (change)="onFileSelected($event)">
             <button mat-raised-button color="primary" type="submit">Upload Image</button>
         </form>
@@ -36,6 +45,12 @@
                 <ng-container matColumnDef="price">
                     <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{ element.price }} </mat-cell>
+                </ng-container>
+
+                 <!-- level Column -->
+                 <ng-container matColumnDef="level">
+                    <mat-header-cell *matHeaderCellDef> Level </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.level }} </mat-cell>
                 </ng-container>
 
                 <!-- Actions Column -->

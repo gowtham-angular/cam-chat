@@ -16,10 +16,11 @@ export class ProductService {
     });
   }
 
-  addProduct(imageName: string, price: number, downloadUrl: string) {
+  addProduct(formData: any, downloadUrl: string) {
     return this.firestore.collection('products').add({
-      imageName,
-      price,
+      imageName: formData.imageName,
+      price: formData.price,
+      level: formData.level,
       url: downloadUrl
     });
   }

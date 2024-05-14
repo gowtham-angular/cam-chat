@@ -6,6 +6,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationComponent } from '../utils/confirmation/confirmation.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+interface Level {
+  value: string;
+  viewValue: string;
+}
+
 
 @Component({
   selector: 'app-products',
@@ -15,19 +21,36 @@ import { ConfirmationComponent } from '../utils/confirmation/confirmation.compon
 
 export class ProductsComponent implements OnInit {
 
-  imageName!: string;
-  price!: number;
   selectedFile!: File;
-  displayedColumns: string[] = ['thumbnail', 'imageName', 'price', 'actions'];
+  displayedColumns: string[] = ['thumbnail', 'imageName', 'price', 'level', 'actions'];
   dataSource!: MatTableDataSource<any>;
   uploading: boolean = false;
+  form: FormGroup;
+
+  
+  levels: Level[] = [
+    { value: 'products', viewValue: 'Display' },
+    { value: 'vip_1', viewValue: 'VIP 1' },
+    { value: 'vip_2', viewValue: 'VIP 2' },
+    { value: 'vip_3', viewValue: 'VIP 3' },
+    { value: 'vip_3', viewValue: 'VIP 4' },
+    { value: 'vip_5', viewValue: 'VIP 5' },
+  ];
 
   constructor(
     private storage: AngularFireStorage,
     private productService: ProductService,
     private afs: AngularFirestore,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder
+  ) { 
+
+    this.form = this.formBuilder.group({
+      level: ['', Validators.required],
+      imageName: ['', Validators.required],
+      price: ['', Validators.required],
+    });
+  }
 
 
   ngOnInit(): void {
@@ -41,7 +64,7 @@ export class ProductsComponent implements OnInit {
   }
 
   uploadImage() {
-    if (!this.selectedFile || !this.imageName || !this.price) {
+    if (!this.selectedFile || !this.form.valid) {
       this.productService.getSnackBar('Please fill all fields.');
       return;
     }
@@ -55,7 +78,7 @@ export class ProductsComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(downloadURL => {
-          this.productService.addProduct(this.imageName, this.price, downloadURL)
+          this.productService.addProduct(this.form.value, downloadURL)
             .then(() => {
               this.productService.getSnackBar('Product added successfully.');
             })
