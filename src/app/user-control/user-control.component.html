@@ -1,0 +1,26 @@
+<!-- autocomplete.component.html -->
+<form [formGroup]="form">
+    <h1>Select User to change the values</h1>
+    <mat-form-field>
+        <input type="text" matInput [matAutocomplete]="auto" formControlName="search">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
+                {{ option.id }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+
+<mat-card style="padding: 10px;" *ngIf="isenabled">
+    <div class="toggle_container" >
+        <div *ngFor="let item of items?.data; let i = index">
+            <mat-slide-toggle [(ngModel)]="item.value" (change)="onToggleChange(i, $event)">
+                {{ item.name }}
+            </mat-slide-toggle>
+        </div>
+    </div>
+</mat-card>
+<div class="mission_list" *ngIf="isenabled">
+
+    <app-mission-card *ngFor="let product of products" [product]="product" [id]="id"></app-mission-card>
+</div>

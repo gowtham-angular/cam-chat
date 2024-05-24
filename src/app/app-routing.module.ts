@@ -6,8 +6,7 @@ import { ProductsComponent } from './products/products.component';
 import { RechargeComponent } from './recharge/recharge.component';
 import { WithdrawalComponent } from './withdrawal/withdrawal.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
-import { UsdtComponent } from './usdt/usdt.component';
-import { ExpenseComponent } from './expense/expense.component';
+import { UserControlComponent } from './user-control/user-control.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -16,6 +15,7 @@ const routes: Routes = [
   { path: 'recharge', component: RechargeComponent },
   { path: 'withdrawal', component: WithdrawalComponent },
   { path: 'bankaccounts', component: BankAccountsComponent },
+  { path: 'userControl', component: UserControlComponent },
   // { path: 'usdt', component: UsdtComponent },
   // { path: 'expense', component: ExpenseComponent },
   { path: '', redirectTo: '/users', pathMatch: 'full' }

@@ -1,0 +1,25 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+    height: 400px;
+    margin: 20px;
+  }
+  
+  mat-card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-card-header, mat-card-content, mat-card-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  mat-card-actions {
+    margin-top: 10px;
+  }
+  

@@ -1,11 +1,11 @@
 export const environment = {
     production: false,
     firebaseConfig: {
-        apiKey: "AIzaSyDJWIbsaUCo7ixahZzr53r6K2-UJEcIdIA",
-        authDomain: "com-chat-eab59.firebaseapp.com",
-        projectId: "com-chat-eab59",
-        storageBucket: "com-chat-eab59.appspot.com",
-        messagingSenderId: "259143818205",
-        appId: "1:259143818205:web:33ebb758ea7dd1e237b434"
+        apiKey: "AIzaSyDEhrgijhInYYHxrn1Hlj-av6K-e7ES0ks",
+        authDomain: "chat-2-adf20.firebaseapp.com",
+        projectId: "chat-2-adf20",
+        storageBucket: "chat-2-adf20.appspot.com",
+        messagingSenderId: "153194749620",
+        appId: "1:153194749620:web:1b051970337b08a34ec1e1"
     }
 };

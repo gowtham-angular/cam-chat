@@ -1,0 +1,19 @@
+<mat-card class="product-card">
+    <mat-card-header>
+        <mat-card-title>{{product.imageName}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image height="80" width="80" [src]="product.url" alt="Product image">
+    <mat-card-content>
+        <p>
+            <strong>Mission:</strong> ₹ {{product.missionAmount}}
+        </p>
+        <button mat-button (click)="editPrice()">Edit Mission Price</button>
+    </mat-card-content>
+    <mat-card-actions *ngIf="editing">
+        <mat-form-field>
+            <input matInput [(ngModel)]="newPrice" placeholder="New Price">
+        </mat-form-field>
+        <button mat-button (click)="updatePrice()">Submit</button>
+        
+    </mat-card-actions>
+</mat-card>

@@ -26,8 +26,8 @@ export class ProductsComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   uploading: boolean = false;
   form: FormGroup;
+  products: any[] = [];
 
-  
   levels: Level[] = [
     { value: 'products', viewValue: 'Display' },
     { value: 'vip_1', viewValue: 'VIP 1' },
@@ -42,13 +42,17 @@ export class ProductsComponent implements OnInit {
     private productService: ProductService,
     private afs: AngularFirestore,
     private dialog: MatDialog,
-    private formBuilder: FormBuilder
-  ) { 
+    private formBuilder: FormBuilder,
+    private firestore: AngularFirestore
+  ) {
 
     this.form = this.formBuilder.group({
       level: ['', Validators.required],
       imageName: ['', Validators.required],
       price: ['', Validators.required],
+    });
+    this.firestore.collection('products').valueChanges({ idField: 'id' }).subscribe(data => {
+      this.products = data;
     });
   }
 
@@ -93,23 +97,5 @@ export class ProductsComponent implements OnInit {
     ).subscribe();
   }
 
-  deleteProduct(productId: string) {
-    
-    const dialogRef = this.dialog.open(ConfirmationComponent, {
-      data: { message: 'Are you sure you want to delete this item?' }
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.productService.deleteProduct(productId).then(() => {
-          this.productService.getSnackBar('Product deleted successfully.');
-        }).catch(error => {
-          this.productService.getSnackBar('Error deleting product.');
-          console.error('Error deleting product:', error);
-        });
-      } else {
-        return
-      }
-    });
-  }
 }

@@ -26,31 +26,12 @@
                         <input matInput type="password" formControlName="password" placeholder="Enter Password">
                     </mat-form-field>
 
-                    <mat-form-field class="form-field">
-                        <mat-label>Total Invested</mat-label>
-                        <input matInput type="number" formControlName="totalInvested" placeholder="Enter Total Invested">
-                    </mat-form-field>
-
-                    <mat-form-field class="form-field">
-                        <mat-label>Total Amount</mat-label>
-                        <input matInput type="number" formControlName="totalAmount" placeholder="Enter Total Amount">
-                    </mat-form-field>
-
-                    <mat-form-field class="form-field">
-                        <mat-label>Profit</mat-label>
-                        <input matInput type="number" formControlName="profit" placeholder="Enter Profit">
-                    </mat-form-field>
-
-                    <mat-form-field class="form-field">
-                        <mat-label>Points</mat-label>
-                        <input matInput type="number" formControlName="points" placeholder="Enter Points">
-                    </mat-form-field>
                     <div>
                         <button mat-raised-button color="primary" type="submit">Submit</button>
                     </div>
                 </form>
             </mat-card-content>
-           
+
         </mat-card>
 
 
@@ -108,7 +89,7 @@
             </ng-container>
 
             <!-- Total Invested -->
-            <ng-container matColumnDef="totalInvested">
+            <!-- <ng-container matColumnDef="totalInvested">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Total Invested</mat-header-cell>
                 <mat-cell *matCellDef="let user">
                     <ng-container *ngIf="!editCache[user.id].editTotalInvested; else editTotalInvested">
@@ -118,10 +99,10 @@
                         <input matInput [(ngModel)]="editCache[user.id].data.totalInvested">
                     </ng-template>
                 </mat-cell>
-            </ng-container>
+            </ng-container> -->
 
             <!-- Total Amount Column -->
-            <ng-container matColumnDef="totalAmount">
+            <!-- <ng-container matColumnDef="totalAmount">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Total Amount</mat-header-cell>
                 <mat-cell *matCellDef="let user">
                     <ng-container *ngIf="!editCache[user.id].editTotalAmount; else editTotalAmount">
@@ -131,10 +112,10 @@
                         <input matInput [(ngModel)]="editCache[user.id].data.totalAmount">
                     </ng-template>
                 </mat-cell>
-            </ng-container>
+            </ng-container> -->
 
             <!-- Profit Column -->
-            <ng-container matColumnDef="profit">
+            <!-- <ng-container matColumnDef="profit">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Profit</mat-header-cell>
                 <mat-cell *matCellDef="let user">
                     <ng-container *ngIf="!editCache[user.id].editProfit; else editProfit">
@@ -144,10 +125,10 @@
                         <input matInput [(ngModel)]="editCache[user.id].data.profit">
                     </ng-template>
                 </mat-cell>
-            </ng-container>
+            </ng-container> -->
 
             <!-- Points Column -->
-            <ng-container matColumnDef="points">
+            <!-- <ng-container matColumnDef="points">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Points</mat-header-cell>
                 <mat-cell *matCellDef="let user">
                     <ng-container *ngIf="!editCache[user.id].editPoints; else editPoints">
@@ -157,26 +138,26 @@
                         <input matInput [(ngModel)]="editCache[user.id].data.points">
                     </ng-template>
                 </mat-cell>
-            </ng-container>
+            </ng-container> -->
 
-              <!-- Edit/Delete Actions Column -->
-              <ng-container matColumnDef="actions">
+            <!-- Edit/Delete Actions Column -->
+            <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let user">
-                  <button mat-icon-button (click)="startEdit(user.id)" *ngIf="!editCache[user.id].edit">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button mat-icon-button (click)="saveEdit(user.id)" *ngIf="editCache[user.id].edit">
-                    <mat-icon>done</mat-icon>
-                  </button>
-                  <button mat-icon-button (click)="cancelEdit(user.id)" *ngIf="editCache[user.id].edit">
-                    <mat-icon>cancel</mat-icon>
-                  </button>
-                  <button mat-icon-button (click)="deleteRow(user.id)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
+                    <button mat-icon-button (click)="startEdit(user.id)" *ngIf="!editCache[user.id].edit">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="saveEdit(user.id)" *ngIf="editCache[user.id].edit">
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="cancelEdit(user.id)" *ngIf="editCache[user.id].edit">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteRow(user.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </td>
-              </ng-container>
+            </ng-container>
 
             <!-- Define column and row definitions -->
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -14,7 +14,6 @@ export class BankAccountsComponent {
 
   ngOnInit(): void {
     this.bankService.getBankAccounts().subscribe((accounts: any[]) => {
-      console.log(accounts);
       this.bankAccounts = accounts;
     });
   }
@@ -26,7 +25,6 @@ export class BankAccountsComponent {
                     IFSC: ${data.ifsc} \n 
                     UPI ID: ${data.upiId}`
     this.clipboardService.copyFromContent(tempData);
-    console.log(tempData)
   }
 
 }

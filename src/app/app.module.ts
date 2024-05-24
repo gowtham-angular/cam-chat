@@ -21,6 +21,9 @@ import { environment } from '../../environment.prod';
 import { ConfirmationComponent } from './utils/confirmation/confirmation.component';
 import { DataTableComponent } from './utils/data-table/data-table.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { UserControlComponent } from './user-control/user-control.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { MissionCardComponent } from './mission-card/mission-card.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ClipboardModule } from 'ngx-clipboard';
     UsdtComponent,
     ExpenseComponent,
     ConfirmationComponent,
-    DataTableComponent
+    DataTableComponent,
+    UserControlComponent,
+    ProductCardComponent,
+    MissionCardComponent
   ],
   imports: [
     BrowserModule,

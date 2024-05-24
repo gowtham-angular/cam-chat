@@ -35,7 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: [
     MatSlideToggleModule,

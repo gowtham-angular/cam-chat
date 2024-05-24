@@ -17,6 +17,10 @@ export class SideNavigationComponent {
       link: 'users'
     }, 
     {
+      name: 'User Control',
+      link: 'userControl'
+    }, 
+    {
       name: 'Products',
       link: 'products'
     }, 

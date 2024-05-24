@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationComponent } from '../utils/confirmation/confirmation.component';
+import { UserService } from '../user.service';
 
 interface EditCacheItem {
   edit: boolean;
@@ -34,7 +35,7 @@ interface EditCacheItem {
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'userName', 'email', 'password', 'totalInvested', 'totalAmount', 'profit', 'points', 'actions'];
+  displayedColumns: string[] = ['id', 'userName', 'email', 'password', 'actions'];
   form: FormGroup;
   lastGeneratedId!: number;
   dataSource!: MatTableDataSource<any>;
@@ -43,7 +44,12 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private formBuilder: FormBuilder, private firestore: AngularFirestore, private snackBar: MatSnackBar, private dialog: MatDialog) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private firestore: AngularFirestore,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private userService: UserService) {
 
     this.form = this.formBuilder.group({
       id: [{ value: '' }, Validators.required],
@@ -108,6 +114,7 @@ export class UsersComponent implements OnInit {
           duration: 3000 // Duration in milliseconds
         });
         this.updateLastGeneratedId(id);
+        this.userService.createUserMetrics(id);
       })
       .catch(error => {
         console.error('Error adding user:', error);
@@ -128,7 +135,6 @@ export class UsersComponent implements OnInit {
         };
       });
       this.dataSource = new MatTableDataSource(users);
-      console.log(this.dataSource.data)
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
 
