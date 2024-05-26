@@ -30,7 +30,7 @@ export class MissionCardComponent {
           const productIndex = arrayField.findIndex((item:any) => item.id === this.product.id);
 
           if (productIndex !== -1) {
-            arrayField[productIndex].missionAmount = this.newPrice;
+            arrayField[productIndex].missionAmount = Number(this.newPrice);
 
             this.firestore.collection('vip_two').doc(this.id).update({ arrayField })
               .then(() => {

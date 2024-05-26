@@ -5,6 +5,9 @@
     <img mat-card-image height="80" width="80" [src]="product.url" alt="Product image">
     <mat-card-content>
         <p>
+            <strong>Price:</strong> ₹ {{product.price}}
+        </p>
+        <p>
             <strong>Mission:</strong> ₹ {{product.missionAmount}}
         </p>
         <button mat-button (click)="editPrice()">Edit Mission Price</button>

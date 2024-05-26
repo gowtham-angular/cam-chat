@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs/operators';
+import { finalize, take } from 'rxjs/operators';
 import { ProductService } from '../products.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -37,11 +37,12 @@ export class ProductsComponent implements OnInit {
     { value: 'vip_5', viewValue: 'VIP 5' },
   ];
 
+  vipOne: any[] = [];
+  vipTwo: any[] = [];
+  vipThree: any[] = [];
   constructor(
     private storage: AngularFireStorage,
     private productService: ProductService,
-    private afs: AngularFirestore,
-    private dialog: MatDialog,
     private formBuilder: FormBuilder,
     private firestore: AngularFirestore
   ) {
@@ -52,10 +53,12 @@ export class ProductsComponent implements OnInit {
       price: ['', Validators.required],
     });
     this.firestore.collection('products').valueChanges({ idField: 'id' }).subscribe(data => {
-      this.products = data;
+      this.products = data.filter((item: any) => item.level === 'products');
+      this.vipOne = data.filter((item: any) => item.level === 'vip_1');
+      this.vipTwo= data.filter((item: any) => item.level === 'vip_2');
+      this.vipThree = data.filter((item: any) => item.level === 'vip_3');
     });
   }
-
 
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe((products: any[]) => {

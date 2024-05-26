@@ -20,13 +20,26 @@
                 <input matInput placeholder="Price" formControlName="price" type="number" required>
             </mat-form-field>
 
-            <input type="file" (change)="onFileSelected($event)">
-            <button mat-raised-button color="primary" type="submit">Upload Image</button>
+            <input style="margin-top: 30px;" type="file" (change)="onFileSelected($event)">
+            <button style="margin-top: 10px;" mat-raised-button color="primary" type="submit">Upload Image</button>
         </form>
     </mat-tab>
     <mat-tab label="Product List">
         <div class="product-list">
+            <mat-toolbar color="warn">Display Images</mat-toolbar>
             <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+        </div>
+        <div class="product-list">
+            <mat-toolbar color="warn">VIP -1 Images</mat-toolbar>
+            <app-product-card *ngFor="let product of vipOne" [product]="product"></app-product-card>
+        </div>
+        <div class="product-list">
+            <mat-toolbar color="warn">VIP -2 Images</mat-toolbar>
+            <app-product-card *ngFor="let product of vipTwo" [product]="product"></app-product-card>
+        </div>
+        <div class="product-list">
+            <mat-toolbar color="warn">VIP -3 Images</mat-toolbar>
+            <app-product-card *ngFor="let product of vipThree" [product]="product"></app-product-card>
         </div>
     </mat-tab>
 </mat-tab-group>
