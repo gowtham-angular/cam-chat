@@ -14,7 +14,7 @@ export class ProductCardComponent {
   editing = false;
   newPrice!: number;
 
-  constructor(private firestore: AngularFirestore, private dialog: MatDialog, private productService: ProductService) {}
+  constructor(private firestore: AngularFirestore, private dialog: MatDialog, private productService: ProductService) { }
 
   editPrice() {
     this.editing = true;
@@ -23,9 +23,9 @@ export class ProductCardComponent {
 
   updatePrice() {
     if (this.newPrice != null) {
-      this.firestore.collection('products').doc(this.product.id).update({ price: this.newPrice })
+      this.firestore.collection('products').doc(this.product.id).update({ price: Number(this.newPrice) })
         .then(() => {
-          this.product.price = this.newPrice;
+          this.product.price = Number(this.newPrice);
           this.editing = false;
         })
         .catch(error => {
@@ -35,7 +35,7 @@ export class ProductCardComponent {
   }
 
   deleteProduct(productId: string) {
-    
+
     const dialogRef = this.dialog.open(ConfirmationComponent, {
       data: { message: 'Are you sure you want to delete this item?' }
     });
