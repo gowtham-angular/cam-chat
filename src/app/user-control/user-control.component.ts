@@ -18,18 +18,21 @@ export class UserControlComponent {
   options: any;
   id: any;
   filteredOptions!: Observable<{ id: string, name: string }[]>;
-  
+
   items: any;
   products: any[] = [];
   isenabled: boolean = false;
-
+  vipOne: any[] = [];
+  vipTwo: any[] = [];
+  vipThree: any[] = [];
+  missionData: any;
+  missionEnabledModel: any;
   constructor(
     private userService: UserService, private fb: FormBuilder,
     private dialog: MatDialog, private fireStore: AngularFirestore) {
     this.getUsers();
     this.isenabled = false;
   }
-
 
   getUsers() {
     this.userService.getUsers().subscribe((data: any) => {
@@ -55,7 +58,8 @@ export class UserControlComponent {
 
   onOptionSelected(event: any) {
     this.getVipFlags(event.option.value);
-    this.getVipTwoProducts(event.option.value);
+    this.getVipProducts(event.option.value);
+    this.getMissionEnabledFlag(event.option.value);
     this.id = event.option.value;
     this.isenabled = true;
   }
@@ -77,6 +81,10 @@ export class UserControlComponent {
     });
   }
 
+  onMissionChange(event: any) {
+    this.updateMissionFlag(this.id, event.checked)
+  }
+
   onToggleChange(index: number, event: any) {
 
     const dialogRef = this.dialog.open(ConfirmationComponent, {
@@ -85,11 +93,20 @@ export class UserControlComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
-        this.items['data'][index].value = event.checked;
-
+        if (index === 0) {
+          this.items['data'][0].value = event.checked;
+          this.items['data'][1].value = !event.checked;
+          this.items['data'][2].value = !event.checked;
+        } else if (index === 1) {
+          this.items['data'][0].value = !event.checked;
+          this.items['data'][1].value = event.checked;
+          this.items['data'][2].value = !event.checked;
+        } else if (index === 2) {
+          this.items['data'][0].value = !event.checked;
+          this.items['data'][1].value = !event.checked;
+          this.items['data'][2].value = event.checked;
+        }
         this.userService.updateVipFlags(this.id, this.items);
-
       } else {
         this.items['data'][index].value = !event.checked;
       }
@@ -98,9 +115,31 @@ export class UserControlComponent {
   }
 
 
-  getVipTwoProducts(id: any) {
-    this.fireStore.collection('vip_two').doc(id).valueChanges().subscribe((data:any) => {
-      this.products = data?.arrayField;
+  getVipProducts(id: any) {
+    this.fireStore.collection('vip_one').doc(id).valueChanges().subscribe((data: any) => {
+      this.vipOne = data?.arrayField;
     });
+    this.fireStore.collection('vip_two').doc(id).valueChanges().subscribe((data: any) => {
+      this.vipTwo = data?.arrayField;
+    });
+    this.fireStore.collection('vip_three').doc(id).valueChanges().subscribe((data: any) => {
+      this.vipThree = data?.arrayField;
+    });
+  }
+
+
+  getMissionEnabledFlag(id: any) {
+    this.fireStore.collection('isMissionEnabled').doc(id).valueChanges().subscribe((data: any) => {
+      if (data) {
+        this.missionData = data;
+        this.missionEnabledModel = this.missionData.missionEnabled;
+      }
+    });
+  }
+
+  updateMissionFlag(id: any, flag: boolean) {
+    this.fireStore.collection('isMissionEnabled').doc(id).update({
+      missionEnabled: flag
+    })
   }
 }

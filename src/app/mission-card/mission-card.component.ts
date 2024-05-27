@@ -12,10 +12,11 @@ import { ProductService } from '../products.service';
 export class MissionCardComponent {
   @Input() product: any;
   @Input() id: any;
+  @Input() level: any;
   editing = false;
   newPrice!: number;
 
-  constructor(private firestore: AngularFirestore, private dialog: MatDialog, private productService: ProductService) {}
+  constructor(private firestore: AngularFirestore, private dialog: MatDialog, private productService: ProductService) { }
 
   editPrice() {
     this.editing = true;
@@ -23,16 +24,19 @@ export class MissionCardComponent {
   }
 
   updatePrice() {
+    let collection = '';
     if (this.newPrice != null) {
-      this.firestore.collection('vip_two').doc(this.id).get().subscribe((doc:any) => {
+      collection = this.level;
+      console.log(collection);
+      this.firestore.collection(collection).doc(this.id).get().subscribe((doc: any) => {
         if (doc.exists) {
           const arrayField = doc.data().arrayField;
-          const productIndex = arrayField.findIndex((item:any) => item.id === this.product.id);
+          const productIndex = arrayField.findIndex((item: any) => item.id === this.product.id);
 
           if (productIndex !== -1) {
             arrayField[productIndex].missionAmount = Number(this.newPrice);
 
-            this.firestore.collection('vip_two').doc(this.id).update({ arrayField })
+            this.firestore.collection(collection).doc(this.id).update({ arrayField })
               .then(() => {
                 this.product.missionAmount = this.newPrice;
                 this.editing = false;
@@ -45,5 +49,5 @@ export class MissionCardComponent {
       });
     }
   }
- 
+
 }

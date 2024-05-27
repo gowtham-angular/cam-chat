@@ -10,17 +10,45 @@
         </mat-autocomplete>
     </mat-form-field>
 </form>
-
-<mat-card style="padding: 10px;" *ngIf="isenabled">
-    <div class="toggle_container" >
+<div class="container">
+    <mat-card style="padding: 10px;" *ngIf="isenabled" class="mat-elevation-z4 toggle_container">
+        <mat-card-title>VIP LEVELS</mat-card-title>
         <div *ngFor="let item of items?.data; let i = index">
             <mat-slide-toggle [(ngModel)]="item.value" (change)="onToggleChange(i, $event)">
                 {{ item.name }}
             </mat-slide-toggle>
         </div>
-    </div>
-</mat-card>
-<div class="mission_list" *ngIf="isenabled">
+    </mat-card>
+    <mat-card style="padding: 10px;" *ngIf="isenabled" class="mat-elevation-z4 toggle_container">
+        <mat-card-title>MISSION INFO</mat-card-title>
+       
+        <mat-slide-toggle [(ngModel)]="missionEnabledModel" (change)="onMissionChange($event)">
+            {{ 'MISSION' }}
+        </mat-slide-toggle>
+        <p>Amount - {{missionData?.missionAmount}}</p>
 
-    <app-mission-card *ngFor="let product of products" [product]="product" [id]="id"></app-mission-card>
+    </mat-card>
+</div>
+<div class="mission_list" *ngIf="isenabled ">
+    <mat-toolbar color="warn">VIP -1 Tasks</mat-toolbar>
+    <div class="level_completed" *ngIf="!vipOne?.length">
+        <p> VIP - Level - 1 Completed</p>
+    </div>
+    <app-mission-card *ngFor="let product of vipOne" [product]="product" [id]="id" [level] ="'vip_one'"></app-mission-card>
+</div>
+
+<div class="mission_list" *ngIf="isenabled">
+    <div class="level_completed" *ngIf="!vipTwo?.length">
+        <p> VIP - Level - 2 Completed</p>
+    </div>
+    <mat-toolbar color="warn">VIP -2 Tasks</mat-toolbar>
+    <app-mission-card *ngFor="let product of vipTwo" [product]="product" [id]="id" [level] ="'vip_two'"></app-mission-card>
+</div>
+
+<div class="mission_list" *ngIf="isenabled">
+    <div class="level_completed" *ngIf="!vipThree?.length">
+        <p> VIP - Level - 3 Completed</p>
+    </div>
+    <mat-toolbar color="warn">VIP -3 Tasks</mat-toolbar>
+    <app-mission-card *ngFor="let product of vipThree" [product]="product" [id]="id" [level] ="'vip_three'"></app-mission-card>
 </div>

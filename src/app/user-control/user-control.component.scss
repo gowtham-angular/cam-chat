@@ -1,9 +1,19 @@
-.toggle_container {
+
+.container{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.toggle_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 30px;
+    margin-bottom: 20px;
 }
 
 .mission_list {
@@ -11,4 +21,21 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
+  }
+  .level_completed{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      margin: 0;
+      padding: 20px;
+      font-weight: 600;
+      font-size: large;
+    }
+  }
+  .mat-elevation-z4 {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   }
