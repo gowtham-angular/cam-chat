@@ -38,17 +38,18 @@
 </div>
 
 <div class="mission_list" *ngIf="isenabled">
+   
+    <mat-toolbar color="warn">VIP -2 Tasks</mat-toolbar>
+    <app-mission-card *ngFor="let product of vipTwo" [product]="product" [id]="id" [level] ="'vip_two'"></app-mission-card>
     <div class="level_completed" *ngIf="!vipTwo?.length">
         <p> VIP - Level - 2 Completed</p>
     </div>
-    <mat-toolbar color="warn">VIP -2 Tasks</mat-toolbar>
-    <app-mission-card *ngFor="let product of vipTwo" [product]="product" [id]="id" [level] ="'vip_two'"></app-mission-card>
 </div>
 
 <div class="mission_list" *ngIf="isenabled">
+    <mat-toolbar color="warn">VIP -3 Tasks</mat-toolbar>
+    <app-mission-card *ngFor="let product of vipThree" [product]="product" [id]="id" [level] ="'vip_three'"></app-mission-card>
     <div class="level_completed" *ngIf="!vipThree?.length">
         <p> VIP - Level - 3 Completed</p>
     </div>
-    <mat-toolbar color="warn">VIP -3 Tasks</mat-toolbar>
-    <app-mission-card *ngFor="let product of vipThree" [product]="product" [id]="id" [level] ="'vip_three'"></app-mission-card>
 </div>
